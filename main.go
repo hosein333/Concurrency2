@@ -6,11 +6,10 @@ import (
 )
 
 func printLog(pChannel chan string) {
-    for i := 0; i < 10; i++ {
+    for {
         v := <-pChannel
         fmt.Println(v)
     }
-    fmt.Println("exit printLog Function")
 }
 
 func main() {
@@ -18,9 +17,10 @@ func main() {
 
     go printLog(LogChannel)
 
-    for i := 0; i < 30; i++ {
+    for i := 0; i < 10; i++ {
+        fmt.Printf("\nWriting Count %d", i)
         LogChannel <- fmt.Sprintf("Coount is %d",i)
-
+        fmt.Printf("\nWited Count %d", i)
     }
 
     fmt.Println("exit fot loop")
