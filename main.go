@@ -6,21 +6,25 @@ import (
 )
 
 func printLog(pChannel chan string) {
-    for {
+    for i := 0; i < 10; i++ {
         v := <-pChannel
         fmt.Println(v)
     }
+    fmt.Println("exit printLog Function")
 }
 
 func main() {
-    LogChannel := make(chan string, 1000)
+    LogChannel := make(chan string, 10)
 
     go printLog(LogChannel)
 
-    for i := 0; i < 1000; i++ {
+    for i := 0; i < 11; i++ {
         LogChannel <- fmt.Sprintf("Coount is %d",i)
 
     }
+
+    fmt.Println("exit fot loop")
+    
     time.Sleep(10 * time.Second)
 
 }
