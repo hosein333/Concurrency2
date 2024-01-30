@@ -18,7 +18,7 @@ func main() {
 
     go printLog(LogChannel)
 
-    for i := 0; i < 11; i++ {
+    for i := 0; i < 30; i++ {
         LogChannel <- fmt.Sprintf("Coount is %d",i)
 
     }
